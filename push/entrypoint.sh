@@ -2,7 +2,7 @@
 
 set -e
 
-: ${REGISTRY:=gcr.io}
+: ${GCLOUD_REGISTRY:=gcr.io}
 : ${IMAGE:=$GITHUB_REPOSITORY}
 : ${TAG:=$GITHUB_SHA}
 : ${DEFAULT_BRANCH_TAG:=true}
@@ -16,18 +16,4 @@ else
   echo "GCLOUD_SERVICE_ACCOUNT_KEY was empty, not performing auth" 1>&2
 fi
 
-if [ "$1" = "build" ]; then
-  docker build -t $IMAGE:$TAG .
-  docker tag $IMAGE:$TAG $REGISTRY/$IMAGE:$TAG
-  if [ "$DEFAULT_BRANCH_TAG" = "true" ]; then
-    BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-    if [ "$BRANCH" = "master" ]; then # TODO
-      docker tag $IMAGE:$TAG $REGISTRY/$IMAGE:$BRANCH
-    fi
-  fi
-elif [ "$1" = "push" ]; then
-  docker push $REGISTRY/$IMAGE
-else
-  echo "Unknown action $1" 1>&2
-  exit 1
-fi
+docker push $GCLOUD_REGISTRY/$IMAGE
