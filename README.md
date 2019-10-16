@@ -33,6 +33,10 @@ echo -n "$(cat path-to/downloaded-key/4a276e9e5862.json)" | base64
 Add the following to `.github/workflows/docker.yaml`:
 
 ```yaml
+name: Docker
+
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -52,15 +56,15 @@ jobs:
 ### Specify a different Registry, Project & image name
 
 ```yaml
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
+    [...]
     steps:
       - uses: actions/checkout@v1
 
       - name: Docker Build
         uses: benjlevesque/actions-docker-gcr/build@master
+        env:
+          IMAGE: my-project/my-image
+          GCLOUD_REGISTRY: eu.gcr.io
 
       - name: Docker Push
         uses: benjlevesque/actions-docker-gcr/push@master
