@@ -1,6 +1,7 @@
 # actions-docker
 
 Opinionated GitHub Actions for common Docker workflows
+
 Fork from https://github.com/urcomputeringpal/actions-docker
 
 ## Opinions (expressed via default environment variables)
@@ -46,7 +47,6 @@ jobs:
         uses: benjlevesque/actions-docker-gcr/push@master
         env:
           GCLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
-}
 ```
 
 ### Specify a different Registry, Project & image name
@@ -68,5 +68,4 @@ jobs:
           IMAGE: my-project/my-image
           GCLOUD_REGISTRY: eu.gcr.io
           GCLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
-}
 ```
