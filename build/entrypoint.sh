@@ -8,8 +8,9 @@ set -e
 : ${TAG:=$GITHUB_SHA}
 : ${DEFAULT_BRANCH_TAG:=true}
 : ${LATEST:=true}
+: ${WORKING_DIRECTORY:=.}
 
-docker build $ARGS -t $IMAGE:$TAG .
+docker build $ARGS -t $IMAGE:$TAG $WORKING_DIRECTORY
 docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$TAG
 
 if [ $LATEST = true ]; then
