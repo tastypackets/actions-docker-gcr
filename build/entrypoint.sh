@@ -19,5 +19,5 @@ fi
 
 if [ $BRANCH_TAG = true ]; then
   BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
+  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:test # Branch tag
 fi
