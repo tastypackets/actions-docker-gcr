@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Docker Build
         uses: tastypackets/actions-docker-gcr/build@master
@@ -64,7 +64,7 @@ jobs:
 ```yaml
     [...]
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Docker Build
         uses: tastypackets/actions-docker-gcr/build@master

@@ -10,12 +10,12 @@ set -e
 : ${LATEST:=true}
 : ${WORKING_DIRECTORY:=.}
 
-docker build $ARGS -t $IMAGE:$TAG $WORKING_DIRECTORY
-docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
+docker build $ARGS -t $IMAGE:test $WORKING_DIRECTORY
+#docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
 docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:tags3 # Branch tag
 
 if [ $LATEST = true ]; then
-  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latest # Latest tag
+  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latests # Latest tag
 fi
 
 if [ $BRANCH_TAG = true ]; then
