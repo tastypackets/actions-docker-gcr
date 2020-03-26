@@ -6,7 +6,7 @@ set -e
 : ${IMAGE:=$GITHUB_REPOSITORY}
 : ${ARGS:=} # Default: empty build args
 : ${TAG:=$GITHUB_SHA}
-: ${BRANCH_TAG:=true}
+: ${BRANCH:=''}
 : ${LATEST:=true}
 : ${WORKING_DIRECTORY:=.}
 
@@ -17,7 +17,6 @@ if [ $LATEST = true ]; then
   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latests # Latest tag
 fi
 
-if [ $BRANCH_TAG = true ]; then
-  BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:test # Branch tag
+if [ -n "$BRANCH" ]; then
+  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
 fi
