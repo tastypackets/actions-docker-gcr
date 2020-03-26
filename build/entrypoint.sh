@@ -12,17 +12,13 @@ set -e
 
 docker build $ARGS -t $IMAGE:$TAG $WORKING_DIRECTORY
 docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
+docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:tags3 # Branch tag
 
 if [ $LATEST = true ]; then
   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latest # Latest tag
 fi
 
-BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
-
-docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:test # Branch tag
-
-# if [ $BRANCH_TAG = true ]; then
-#   BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-#   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
-# fi
+if [ $BRANCH_TAG = true ]; then
+  BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
+  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
+fi
