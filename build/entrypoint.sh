@@ -11,8 +11,7 @@ set -e
 : ${WORKING_DIRECTORY:=.}
 
 docker build $ARGS -t $IMAGE:$TAG $WORKING_DIRECTORY
-#docker tag $IMAGE:test $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
-docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:tags3 # Branch tag
+docker tag $IMAGE:$tag $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
 
 if [ $LATEST = true ]; then
   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latests # Latest tag
