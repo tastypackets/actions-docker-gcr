@@ -6,7 +6,7 @@ set -e
 : ${IMAGE:=$GITHUB_REPOSITORY}
 : ${ARGS:=} # Default: empty build args
 : ${TAG:=$GITHUB_SHA}
-: ${DEFAULT_BRANCH_TAG:=true}
+: ${BRANCH_TAG:=true}
 : ${LATEST:=true}
 : ${WORKING_DIRECTORY:=.}
 
