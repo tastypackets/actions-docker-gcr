@@ -5,7 +5,7 @@ set -e
 : ${GCLOUD_REGISTRY:=gcr.io}
 : ${IMAGE:=$GITHUB_REPOSITORY}
 : ${ARGS:=} # Default: empty build args
-: ${TAG:=$GITHUB_REF} # Default tag to git SHA
+: ${TAG:=$GITHUB_SHA} # Default tag to git SHA
 : ${BRANCH_TAG:=true}
 : ${LATEST:=true}
 : ${WORKING_DIRECTORY:=.} # Default to CWD
