@@ -17,7 +17,10 @@ if [ $LATEST = true ]; then
   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:latest # Latest tag
 fi
 
-if [ $BRANCH_TAG = true ]; then
-  BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
-  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
-fi
+BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
+docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
+
+# if [ $BRANCH_TAG = true ]; then
+#   BRANCH=$(echo $GITHUB_REF | rev | cut -f 1 -d / | rev)
+#   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
+# fi
