@@ -1,5 +1,7 @@
 # actions-docker
 
+I forked this to add some missing functionality, such as passing a path and default adding a tag of the git branch.
+
 Opinionated GitHub Actions for common Docker workflows
 
 Fork from https://github.com/urcomputeringpal/actions-docker
@@ -9,7 +11,7 @@ Fork from https://github.com/urcomputeringpal/actions-docker
 - [`REGISTRY=gcr.io`](https://gcr.io)
 - `IMAGE=$GITHUB_REPOSITORY`
   - (Expects a Google Cloud Project named after your GitHub username)
-- `TAG=$GITHUB_SHA`
+- `TAG=$GITHUB_SHA, BRANCH`
 - `DEFAULT_BRANCH_TAG=true`
 
 ## Usage
@@ -49,10 +51,10 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Docker Build
-        uses: benjlevesque/actions-docker-gcr/build@master
+        uses: tastypackets/actions-docker-gcr/build@master
 
       - name: Docker Push
-        uses: benjlevesque/actions-docker-gcr/push@master
+        uses: tastypackets/actions-docker-gcr/push@master
         env:
           GCLOUD_SERVICE_ACCOUNT_KEY: ${{ secrets.GCLOUD_SERVICE_ACCOUNT_KEY }}
 ```
@@ -65,13 +67,13 @@ jobs:
       - uses: actions/checkout@v1
 
       - name: Docker Build
-        uses: benjlevesque/actions-docker-gcr/build@master
+        uses: tastypackets/actions-docker-gcr/build@master
         env:
           IMAGE: my-project/my-image
           GCLOUD_REGISTRY: eu.gcr.io
 
       - name: Docker Push
-        uses: benjlevesque/actions-docker-gcr/push@master
+        uses: tastypackets/actions-docker-gcr/push@master
         env:
           IMAGE: my-project/my-image
           GCLOUD_REGISTRY: eu.gcr.io
