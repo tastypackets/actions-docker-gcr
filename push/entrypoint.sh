@@ -4,9 +4,6 @@ set -e
 
 : ${GCLOUD_REGISTRY:=gcr.io}
 : ${IMAGE:=$GITHUB_REPOSITORY}
-: ${TAG:=$GITHUB_SHA}
-: ${DEFAULT_BRANCH_TAG:=true}
-: ${LATEST:=true}
 
 if [ -n "${GCLOUD_SERVICE_ACCOUNT_KEY}" ]; then
   echo "Logging into gcr.io with GCLOUD_SERVICE_ACCOUNT_KEY..."
@@ -17,8 +14,4 @@ else
   echo "GCLOUD_SERVICE_ACCOUNT_KEY was empty, not performing auth" 1>&2
 fi
 
-docker push $GCLOUD_REGISTRY/$IMAGE:$TAG
-
-if [ $LATEST = true ]; then
-  docker push $GCLOUD_REGISTRY/$IMAGE:latest
-fi
+docker push $GCLOUD_REGISTRY/$IMAGE
