@@ -10,11 +10,6 @@ set -e
 : ${LATEST:=true}
 : ${WORKING_DIRECTORY:=.} # Default to CWD
 
-echo $GITHUB_SHA
-echo $GITHUB_REF
-echo $GITHUB_HEAD_REF
-echo $TAG
-
 docker build $ARGS -t $IMAGE:$TAG $WORKING_DIRECTORY
 docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$TAG # SHA or custom tag
 
@@ -27,7 +22,6 @@ if [ $BRANCH_TAG = true ]; then
   if [ -n "$GITHUB_HEAD_REF" ]; then
     BRANCH_RAW=$GITHUB_HEAD_REF
   fi
-  echo $BRANCH_RAW
   BRANCH=$(echo $BRANCH_RAW | rev | cut -f 1 -d / | rev)
   docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
 fi
