@@ -29,5 +29,5 @@ if [ $BRANCH_TAG = true ]; then
   fi
   echo $BRANCH_RAW
   BRANCH=$(echo $BRANCH_RAW | rev | cut -f 1 -d / | rev)
-  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch ta
+  docker tag $IMAGE:$TAG $GCLOUD_REGISTRY/$IMAGE:$BRANCH # Branch tag
 fi
