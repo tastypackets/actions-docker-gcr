@@ -11,8 +11,10 @@ Fork from https://github.com/urcomputeringpal/actions-docker
 - [`REGISTRY=gcr.io`](https://gcr.io)
 - `IMAGE=$GITHUB_REPOSITORY`
   - (Expects a Google Cloud Project named after your GitHub username)
-- `TAG=$GITHUB_SHA, BRANCH`
-- `DEFAULT_BRANCH_TAG=true`
+- `TAG=$GITHUB_SHA`
+- `LATEST=true`(Adds the `latest` tag)
+- `BRANCH_TAG=true`(Adds the current branch name as a tag)
+- `WORKING_DIRECTORY=.` (Path variable passed into docker build)
 
 ## Usage
 
