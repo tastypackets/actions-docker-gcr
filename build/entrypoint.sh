@@ -23,9 +23,9 @@ if [ $LATEST = true ]; then
 fi
 
 if [ $BRANCH_TAG = true ]; then
-  BRANCH_RAW = $GITHUB_REF
+  $BRANCH_RAW=$GITHUB_REF
   if [ -n "$GITHUB_HEAD_REF" ]; then
-    BRANCH_RAW = $GITHUB_HEAD_REF
+    $BRANCH_RAW=$GITHUB_HEAD_REF
   fi
   echo $BRANCH_RAW
   BRANCH=$(echo $BRANCH_RAW | rev | cut -f 1 -d / | rev)
